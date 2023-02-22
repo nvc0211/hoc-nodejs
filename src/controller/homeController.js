@@ -1,21 +1,22 @@
 
-import connection  from "../configs/connectDB";
+import connection from "../configs/connectDB";
 
 let getHomepage = (req, res) => {
-    
-    let data=[];
+
+    let data = [];
     connection.query(
-    'SELECT * FROM `users`',
-    function(err, results, fields){
-        results.map((row) => {data.push({
-                id: row.id,
-                email: row.email,
-                address: row.address,
-                firstName: row.firstName,
-                lastName: row.lastName
+        'SELECT * FROM `users`',
+        function (err, results, fields) {
+            results.map((row) => {
+                data.push({
+                    id: row.id,
+                    email: row.email,
+                    address: row.address,
+                    firstName: row.firstName,
+                    lastName: row.lastName
+                })
             })
-        })
-        return res.render('index.ejs', {dataUser: JSON.stringify(data)});
+            return res.render('index.ejs', { dataUser: data });
         });
 }
 
