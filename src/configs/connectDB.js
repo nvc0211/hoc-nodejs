@@ -1,25 +1,11 @@
-import mysql from 'mysql2';
+import mysql from 'mysql2/promise';
 
-const connection = mysql.createConnection({
+
+const pool = mysql.createPool({
     host: 'localhost',
     user: 'root',
     database: 'nodejsbasic'
 });
 
-// connection.query(
-//     'SELECT * FROM `users`',
-//     function(err, results, fields){
-//         results.map((row) => {
-//             data.push({
-//                 id: row.id,
-//                 email: row.email,
-//                 address: row.address,
-//                 firstName: row.firstName,
-//                 lastName: row.lastName
-//             })
-//         })
-//         return results.render('test/index.ejs', {dataUser: JSON.stringify(data)});
-//         }
-// );
 
-export default connection;
+export default pool;
